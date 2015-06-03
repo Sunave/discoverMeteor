@@ -1,6 +1,17 @@
 Template.postsList.onRendered(function() {
   this.find('.wrapper')._uihooks = {
-    moveElement: function (node, next) {
+    insertElement: function(node, next) {
+      $(node)
+          .hide()
+          .insertBefore(next)
+          .fadeIn();
+    },
+    removeElement: function(node) {
+      $(node).fadeOut(function() {
+        $(this).remove();
+      });
+    },
+    moveElement: function(node, next) {
       // Get baseline
       var $node = $(node), $next = $(next);
       var oldTop = $node.offset().top;
